@@ -309,7 +309,7 @@ def preprocessing_data(df, path_loc):
     return data
 
 def main():
-    path_loc = r'C:\Users\biennn1\Downloads\housing_master_v2-20231211T011230Z-001\housing_master_v2\resources\loc.csv'
+    path_loc = r'C:\Users\huuph\OneDrive\Documents\chungcu\loc.csv'
     # path_data = ''
     # data_csv = []
     # for file_csv in LIST_FILE_DATA:
@@ -317,12 +317,12 @@ def main():
     #     df = read_file_csv(path_file_csv)
     #     data_csv.append(df)
     # dataframe = concat_data(data_csv)
-    dataframe = pd.read_csv(r'C:\Users\biennn1\Downloads\housing_master_v2-20231211T011230Z-001\housing_master_v2\resources\bds_1112\bds_1112.csv')
+    dataframe = pd.read_csv(r'C:\Users\huuph\OneDrive\Documents\chungcu\bds_0512.csv')
     dataframe_new = preprocessing_data(dataframe, path_loc)
     df = select_feature_data(dataframe_new)
     df = filtering(df)
     df = fillna_missing(df)
-    df.to_csv(r'C:\Users\biennn1\Downloads\housing_master_v2-20231211T011230Z-001\housing_master_v2\data_output')
+    df.to_csv(r'data_output.csv')
     return df
 
 if __name__ == '__main__':
