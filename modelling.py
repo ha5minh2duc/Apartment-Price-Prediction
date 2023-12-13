@@ -60,6 +60,10 @@ def processing_data(df):
     df = quantiles(df)
     return df
 
+def processing_data_predict(df):
+    df = convert_type(df)
+    df = caculator_dataframe(df)
+    return df
 
 def split_data(df):
     global X, y
@@ -121,13 +125,17 @@ def evaluate(gbm_model, X_test, y_test):
         "R2a_gbm_test": R2a_gbm_test
     }
 
+def predict(gbm_model, X_test):
+    y_pred_test = gbm_model.predict(X_test, num_iteration=gbm_model.best_iteration_) 
+    return y_pred_test
+
 def train_model():
-    path_data = r'C:\Users\biennn1\Downloads\housing_master_v2-20231211T011230Z-001\housing_master_v2\data_output\bds_processed_0512.csv'
+    path_data = r'C:\Users\huuph\OneDrive\Documents\chungcu\Apartment-Price-Prediction\data output\data_bds112.csv'
     dataframe = read_file_csv(path_data)
     dataframe = processing_data(dataframe)
     X_train, X_test, y_train, y_test = split_data(dataframe)
     gbm_model = modelling(X_train, X_test, y_train, y_test)
-    save_model(gbm_model, r'C:\Users\biennn1\Downloads\housing_master_v2-20231211T011230Z-001\housing_master_v2\model\model.joblib')
+    save_model(gbm_model, r'C:\Users\huuph\OneDrive\Documents\chungcu\Apartment-Price-Prediction\model\model.joblib')
     result = evaluate(gbm_model, X_test, y_test)
     print(result)
 
